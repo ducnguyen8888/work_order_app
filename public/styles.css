@@ -1,0 +1,33 @@
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+form#createOrder fieldset label{
+    display: block;
+}
+
+fieldset{
+    border-radius:10px;
+    background-color:#EEEEEE}
+
+textarea{
+ border-radius:10px;
+}
+	
+input{
+    border-radius:10px;
+}
+
+button{
+    border-radius:10px;
+    background-color:#EEEEEE
+}
+
+p#status{
+color: red;
+font-size: 30px
+
+}
+}

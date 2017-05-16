@@ -1,0 +1,58 @@
+<html ng-app="createorderApp">
+<head>
+	<script src="javascripts/angular/angular.js"></script>
+	<script src="javascripts/orderController.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<title> WorkOrder_Boateng_Nguyen </title>
+	<p id="status"></p>
+</head>
+<body ng-controller="OrdersController as ordersController">
+	<h1> WORK_ORDER_BOATENG_NGUYEN</h1>
+
+<form id = createOrder name = orderForm>
+	<fieldset id = createorder>
+		<label>Creator Name</label>
+			<input type="text"  placeholder="firstname   lastname" ng-model="ordersController.order.creatorname"  ng-required="!(ordersController.order.creatorname.length&&ordersController.order.description.length&&ordersController.order.location.length&&ordersController.order.severity.length)"></input>
+		<label>Work Location:</label>
+			<input type="hidden"  id="location" ng-model="ordersController.order.location"  ng-required="!(ordersController.order.creatorname.length&&ordersController.order.description.length&&ordersController.order.location.length&&ordersController.order.severity.length)"></input>
+		<label id="locationlabel">Please press the button to get geolocation</label>
+			<button id="locationButton" type="button"ng-click="ordersController.getGeoLocation()">getGeoLocation</button>
+		<label>Creation Date</label>
+			<input id ="date" type="date" ng-model="ordersController.order.date"  required></input>
+			
+		<label>Severity</label>
+		<select ng-model="ordersController.order.severity" ng-required="!(ordersController.order.creatorname.length||ordersController.order.description.length||ordersController.order.location.length||ordersController.order.severity.length)">
+			<option></option>
+			<option value ="Minor">Minor</option>
+			<option value ="Major">Major</option>
+			<option value ="Urgent">Urgent</option>
+		</select><br>
+		<label>Work Description(Maximum: 300 words)</label>
+			<textarea id='txt' rows="15" cols="50" onkeyup="limitWords(this.id)" ng-model="ordersController.order.description"  ng-required="!(ordersController.order.creatorname.length||ordersController.order.description.length||ordersController.order.location.length||ordersController.order.severity.length)"></textarea>
+		<label id ="wCount">Words :0</label>
+		<label id ="wLimit"></label>
+		<input id ="submit" type="submit" ng-click="ordersController.addOrder()" ng-disabled="!orderForm.$valid"></input>
+	</fieldset>
+</form>
+
+
+<script type="text/javascript">
+      var datefield=document.createElement("input")
+      datefield.setAttribute("type", "date")
+      if (datefield.type!="date"){ 
+         document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+      }
+ </script>
+
+ <script>
+    if (datefield.type!="date"){ 
+       jQuery(function($){ 
+           $('#date').datepicker();
+       })
+    }
+ </script>
+ </body>
+</html>
